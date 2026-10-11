@@ -4,6 +4,10 @@ A documentation-first engineering case study of an ESP32-based P10 LED matrix co
 
 > **Confidentiality note:** This repository documents the system at a high level. The production firmware and proprietary implementation are intentionally not included. Diagrams and flows are conceptual, not wiring plans or source-code traces.
 
+## Project background
+
+This controller's embedded firmware was developed during an internship at [HashStudioz Technologies](https://www.hashstudioz.com/), a product-engineering and IoT company, and the resulting firmware was delivered into a live client project. The client, the deployment environment, and the production implementation are not identified in this repository.
+
 ## Overview
 
 The project context brings together display control, wired network commands, persistent configuration, and concurrent embedded work. This portfolio describes the engineering boundaries and validation questions without distributing production code, configuration, protocols, or evidence that has not been approved for release.
@@ -60,11 +64,13 @@ See [media/README.md](media/README.md) for the release-review boundary and the c
 - **Concurrent work:** Separate slower network handling from display responsibilities; synchronize shared state and keep interrupt work short. See [concurrency](docs/concurrency.md).
 - **OTA selection:** The project owner reports that both SOTA and LAN OTA approaches were implemented and evaluated, with LAN OTA selected as the better fit for this Ethernet-connected controller. This repository does not claim a particular protocol, security model, deployment process, rollback behavior, or production readiness. See [OTA design](docs/ota-design.md) and the [design decisions](docs/design-decisions.md).
 
-The work covered integration topics across embedded display control, Ethernet communication, structured commands, persistence, task design, and OTA evaluation. Specific ownership, delivered features, and outcomes should be confirmed by the project owner before attribution.
+The work covered integration topics across embedded display control, Ethernet communication, structured commands, persistence, task design, and OTA evaluation.
 
 ## Personal contributions and ownership
 
-My documented contribution is the high-level organization of this engineering case study, its conceptual diagrams, and its documentation of integration and validation considerations. This is a collaborative project record and is not a claim of sole authorship or ownership. Production implementation details, internal protocols, deployment information, and other proprietary material are intentionally withheld.
+My contribution was the embedded firmware work on this controller during the internship at HashStudioz Technologies, covering display control and rendering behavior, the W5500 Ethernet path and structured command handling, persistent configuration, concurrent task design and shared-state synchronization, and development of the LAN OTA update approach. The firmware was delivered into a live client project.
+
+This section describes my own contribution and does not claim sole authorship of the whole system. Production implementation details, internal protocols, the client's identity, and deployment information are intentionally withheld, and the summary above is written from my own recollection of the work rather than from a released specification.
 
 ## OTA status
 
@@ -91,7 +97,7 @@ The P10 display board used for testing had some non-working pixels. Consequently
 
 ## Validation and disclosure
 
-All tests in the [test plan](tests/test-plan.md) are **Needs confirmation**. This repository contains no test results or proof of deployed behavior. The owner-reported OTA implementation and evaluation are recorded as project history, not as independent evidence of end-to-end production readiness; do not infer that a valid upload, reboot, recovery path, or security control has been demonstrated here.
+All tests in the [test plan](tests/test-plan.md) are **Needs confirmation**, and this repository publishes no test results. The firmware was delivered into a client project, but delivery is not evidence of any specific behavior: it does not demonstrate a successful OTA upload, reboot, recovery path, or security control. Read these statuses as "no verified evidence is published in this repository" rather than as a statement that a feature was never implemented. The owner-reported OTA implementation and evaluation are recorded as project history, not as independent evidence of end-to-end production readiness.
 
 Production source, `platformio.ini`, firmware binaries, internal network identifiers and endpoints, credentials, logs, and unapproved media are excluded. Any future public detail or attribution requires an owner review for disclosure permission. Licensing remains unspecified pending authorization.
 

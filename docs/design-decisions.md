@@ -20,4 +20,4 @@ The [system overview image](../media/system-overview.png) and editable diagrams 
 
 ## Disclosure boundary
 
-Production source, build configuration, firmware binaries, internal network identifiers and endpoints, credentials, logs, exact command schemas, and unapproved test evidence remain outside this repository. Licensing remains unspecified pending authorization.
+Production source, build configuration, firmware binaries, internal network identifiers and endpoints, credentials, logs, exact command schemas, the client's identity and engagement details, and unapproved test evidence remain outside this repository. The development context — an internship at HashStudioz Technologies and delivery into a client project — is stated at a high level only, as recorded in the [README](../README.md#project-background). Licensing remains unspecified pending authorization.
