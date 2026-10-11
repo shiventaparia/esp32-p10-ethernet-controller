@@ -1,0 +1,12 @@
+%% Conceptual system architecture only; not exact wiring, topology, or production source-code trace.
+flowchart TD
+    Client[LAN Client] --> TCP[TCP Server]
+    TCP --> JSON[Command / JSON Processing]
+    JSON --> State[Display and Configuration State]
+    State --> Render[Display Rendering]
+    Render --> P10[P10 LED Matrix]
+    State <--> NVS[Preferences / NVS]
+    W5500[W5500 Ethernet] <--> TCP
+    RTOS[FreeRTOS Tasks and Synchronization] -. coordinates .-> TCP
+    RTOS -. coordinates .-> Render
+    Timer[Display Refresh Timer / ISR] --> P10

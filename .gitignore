@@ -1,0 +1,33 @@
+# PlatformIO/build outputs and firmware images
+.pio/
+build/
+dist/
+*.bin
+*.elf
+*.hex
+*.map
+*.o
+*.a
+
+# Production project files are outside this documentation-only showcase
+platformio.ini
+src/
+include/
+lib/
+
+# IDE and local files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Local configuration and secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials.*

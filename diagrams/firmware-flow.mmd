@@ -1,0 +1,11 @@
+%% Conceptual firmware flow only; actual boot sequence and implementation need owner confirmation.
+flowchart TD
+    A[Power On] --> B[Initialize Controller]
+    B --> C[Load Supported Settings]
+    C --> D[Initialize Ethernet and Display]
+    D --> E[Start RTOS Tasks]
+    E --> F[Network Task Receives Request]
+    F --> G[Validate and Interpret Command]
+    G --> H[Update Shared Display State]
+    H --> I[Display Task Renders State]
+    I --> J[Display Refresh Continues]
