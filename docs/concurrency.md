@@ -12,4 +12,4 @@ Network processing may propose a new message or setting while display work reads
 
 Timer-driven display scanning or refresh has different timing requirements from client I/O and JSON processing. Interrupt service routines should do minimal work: avoid blocking, dynamic allocation, and lengthy processing in an ISR. Rendering, state management, and parsing belong in an appropriate task context rather than in a long-running interrupt handler. Actual timer wiring, scheduling guarantees, and core pinning are not asserted here.
 
-Validation questions include simultaneous command updates and rendering, rapid row changes, and responsiveness while the display refreshes. These are planned checks, not passed tests; see [the test plan](../tests/test-plan.md).
+Validation questions include simultaneous command updates and rendering, rapid per-line changes on the four-line display, and responsiveness while the display refreshes. These are planned checks, not passed tests; see [the test plan](../tests/test-plan.md).

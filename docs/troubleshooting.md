@@ -11,7 +11,7 @@ Record the visible symptom, the test setup, the input that preceded it, and whet
 - Check the P10 panel, connectors, power arrangement, and test setup before attributing a visible artifact to firmware.
 - The P10 display board used for testing had some non-working pixels. A missing or incorrect-looking pixel may therefore be hardware-related and is not automatically a firmware defect.
 - Compare a fixed message with a scrolling message and note whether the issue follows the content, position, or physical location on the panel.
-- Record whether the issue affects the whole panel, a logical row/region, or isolated pixels. This helps distinguish a test-hardware observation from a higher-level rendering concern without asserting a root cause.
+- Record whether the issue affects the whole panel, one of the four independently controlled lines, or isolated pixels. This helps distinguish a test-hardware observation from a higher-level rendering concern without asserting a root cause.
 
 ## Ethernet and command observations
 

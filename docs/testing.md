@@ -16,4 +16,6 @@ This documentation-only repository does not contain firmware, hardware setup, lo
 | OTA | Valid firmware upload and successful reboot | Needs confirmation |
 | OTA failure handling | Interrupted/invalid upload does not falsely report success | Needs confirmation |
 
+Manual command testing during development used RealTerm's packet-send feature; see the [tooling note](../README.md#development-and-test-tooling). Driving a tool by hand is not a reproducible test and does not by itself change any status above.
+
 When updating evidence later, first obtain the owner's approval to share it, then record the tested setup, procedure, expected/observed behavior, and date without revealing identifiers or proprietary details. In particular, OTA remains **Needs confirmation from the project owner**; development activity is not an end-to-end result.

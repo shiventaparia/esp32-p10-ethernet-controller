@@ -16,7 +16,7 @@ The project context brings together display control, wired network commands, per
 | --- | --- |
 | Controller | ESP32 |
 | Network interface | W5500 Ethernet controller over SPI |
-| Display | P10 LED matrix; text positioning, fixed/scrolling content, and logical rows were project topics |
+| Display | Four-line P10 LED matrix with independent per-line control; text positioning, fixed/scrolling content, and per-line updates |
 | Commands | TCP communication and JSON-based command processing |
 | Configuration | ESP32 Preferences/NVS for supported settings |
 | Scheduling | FreeRTOS tasks, synchronization of shared state, and timer-driven refresh |
@@ -58,7 +58,7 @@ See [media/README.md](media/README.md) for the release-review boundary and the c
 
 ## Engineering considerations
 
-- **Display:** Text layout, fixed versus scrolling content, logical-row updates, and refresh timing require explicit boundaries between state changes and physical scanning. See [hardware](docs/hardware.md) and [concurrency](docs/concurrency.md).
+- **Display:** Four independently controlled lines, so text layout, fixed versus scrolling content, per-line updates, and refresh timing all require explicit boundaries between state changes and physical scanning. See [hardware](docs/hardware.md) and [concurrency](docs/concurrency.md).
 - **Networking:** Receive, validate, and dispatch commands without assuming that input is trustworthy or publishing the production command schema. See [networking](docs/networking.md).
 - **Persistence:** Decide which settings belong in nonvolatile storage and how runtime state is restored without presenting an unconfirmed boot order as fact. See [architecture](docs/architecture.md).
 - **Concurrent work:** Separate slower network handling from display responsibilities; synchronize shared state and keep interrupt work short. See [concurrency](docs/concurrency.md).
@@ -68,9 +68,13 @@ The work covered integration topics across embedded display control, Ethernet co
 
 ## Personal contributions and ownership
 
-My contribution was the embedded firmware work on this controller during the internship at HashStudioz Technologies, covering display control and rendering behavior, the W5500 Ethernet path and structured command handling, persistent configuration, concurrent task design and shared-state synchronization, and development of the LAN OTA update approach. The firmware was delivered into a live client project.
+My contribution was the embedded firmware work on this controller during the internship at HashStudioz Technologies, covering display control and rendering behavior for a four-line P10 matrix in which every line is driven independently, the W5500 Ethernet path and structured command handling, persistent configuration, concurrent task design and shared-state synchronization, and development of the LAN OTA update approach. The firmware was delivered into a live client project.
 
 This section describes my own contribution and does not claim sole authorship of the whole system. Production implementation details, internal protocols, the client's identity, and deployment information are intentionally withheld, and the summary above is written from my own recollection of the work rather than from a released specification.
+
+## Development and test tooling
+
+Manual command testing during development was carried out with [RealTerm](https://realterm.sourceforge.io/), a third-party serial/TCP terminal tool built for sending binary and hard-to-type data streams, using its packet-send feature to exercise the controller's command handling. The packet contents and the connection settings are not published, and manual tooling use is not recorded here as a passed test. See [testing](docs/testing.md) and the [test plan](tests/test-plan.md).
 
 ## OTA status
 

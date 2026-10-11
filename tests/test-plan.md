@@ -2,7 +2,9 @@
 
 > **All statuses: Needs confirmation.** No checks below have been verified in this public repository. OTA end-to-end success specifically needs confirmation from the project owner.
 
-Use a release-approved test setup and synthetic inputs. For each case, record preconditions, steps, expected and observed behavior, date, and owner-confirmed outcome in a sanitized form before changing a status. Avoid publishing serial captures, network settings, binary images, or internal screenshots.
+Use a release-approved test setup and synthetic inputs. For each case, record preconditions, steps, expected and observed behavior, date, and owner-confirmed outcome in a sanitized form before changing a status. Avoid publishing serial captures, network settings, packet contents, binary images, or internal screenshots.
+
+Manual command testing during development sent packets with RealTerm (see the [tooling note](../README.md#development-and-test-tooling)). Driving a tool by hand is not a reproducible test, so it does not by itself change any status below and no packet contents are published here.
 
 | Area | Suggested test | What to check | Status |
 | --- | --- | --- | --- |
@@ -12,7 +14,7 @@ Use a release-approved test setup and synthetic inputs. For each case, record pr
 | Parsing | Valid and malformed payload handling | Compare accepted synthetic input with invalid JSON, missing fields, and oversized input. | Needs confirmation |
 | Display | Fixed text and positioning | Check placement and clearing against an agreed display layout. | Needs confirmation |
 | Scrolling | Scrolling behavior and boundaries | Check start, stop, and edge cases without asserting an undocumented timing target. | Needs confirmation |
-| Rows | Independent row update/erase behavior | Check that a row change does not unintentionally alter another logical row. | Needs confirmation |
+| Rows | Independent row update/erase behavior | Change, clear, or scroll one of the four display lines and check that the remaining lines are unaffected. | Needs confirmation |
 | Persistence | Supported settings survive restart | Change an approved setting, restart, and compare restored state with expectation. | Needs confirmation |
 | Concurrency | Shared state remains consistent under concurrent activity | Exercise repeated command changes while rendering; look for inconsistent frames or stalled work. | Needs confirmation |
 | OTA | Valid firmware upload and successful reboot | With an authorized test image, confirm finalization and boot into the intended image. | Needs confirmation |
