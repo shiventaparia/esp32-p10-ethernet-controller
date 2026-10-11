@@ -17,7 +17,7 @@ The project context brings together display control, wired network commands, per
 | Controller | ESP32 |
 | Network interface | W5500 Ethernet controller over SPI |
 | Display | Four-line P10 LED matrix with independent per-line control; text positioning, fixed/scrolling content, and per-line updates |
-| Commands | TCP communication and JSON-based command processing |
+| Commands | TCP communication and JSON-based command processing; command packets were also sent over the serial/UART link during development |
 | Configuration | ESP32 Preferences/NVS for supported settings |
 | Scheduling | FreeRTOS tasks, synchronization of shared state, and timer-driven refresh |
 | Maintenance | The project owner reports that both SOTA and LAN OTA approaches were implemented and evaluated; LAN OTA was selected as the better fit for this Ethernet-connected controller |
@@ -74,7 +74,7 @@ This section describes my own contribution and does not claim sole authorship of
 
 ## Development and test tooling
 
-Manual command testing during development was carried out with [RealTerm](https://realterm.sourceforge.io/), a third-party serial/TCP terminal tool built for sending binary and hard-to-type data streams, using its packet-send feature to exercise the controller's command handling. The packet contents and the connection settings are not published, and manual tooling use is not recorded here as a passed test. See [testing](docs/testing.md) and the [test plan](tests/test-plan.md).
+Manual command testing during development was carried out with [RealTerm](https://realterm.sourceforge.io/), a third-party serial/TCP terminal tool built for sending binary and hard-to-type data streams, using its packet-send feature over the controller's serial/UART link to exercise the controller's command handling. The packet contents, the serial settings, and the adapter used are not published, and manual tooling use is not recorded here as a passed test. See [testing](docs/testing.md) and the [test plan](tests/test-plan.md).
 
 ## OTA status
 

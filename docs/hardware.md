@@ -13,6 +13,8 @@
 
 The W5500 is an SPI peripheral. SPI transfers use clock/data signals and a chip-select concept to select a device. Any other use or sharing of SPI, including display wiring, needs hardware-specific confirmation; the [system diagram](../diagrams/system-architecture.mmd) intentionally does not specify it.
 
+The ESP32's UART/serial link is a separate path from the W5500 interface and was used during development to send command packets to the controller by hand (see the [tooling note](../README.md#development-and-test-tooling)). The serial parameters, the adapter used, and the packet format are not published here, and how that path is exposed outside development is not asserted.
+
 LED matrix refresh can be time-sensitive. Wiring, signal integrity, voltage compatibility, available current, and thermal behavior should be checked against the actual components before using a physical build. No GPIO mapping, board revision, physical panel count, power rating, or production pin assignment is published here.
 
 ## Display configuration

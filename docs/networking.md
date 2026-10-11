@@ -22,3 +22,7 @@ The following invented payload illustrates JSON shape **only**. It is not a prod
 ```
 
 No actual addresses, MACs, ports, hostnames, command names, or internal endpoints are disclosed. See [architecture](architecture.md) for the component relationship and [test planning](../tests/test-plan.md) for unverified parsing/network cases.
+
+### Serial command path
+
+Alongside the TCP path described above, command packets were also sent to the controller over its serial/UART link during development and testing. That link is a distinct interface from the W5500 Ethernet path; its framing, responses, and access characteristics are not documented here, and how it is exposed outside development is not asserted. As with TCP, a physical or serial connection does not by itself authenticate a client.

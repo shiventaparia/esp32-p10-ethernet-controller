@@ -4,7 +4,7 @@
 
 Use a release-approved test setup and synthetic inputs. For each case, record preconditions, steps, expected and observed behavior, date, and owner-confirmed outcome in a sanitized form before changing a status. Avoid publishing serial captures, network settings, packet contents, binary images, or internal screenshots.
 
-Manual command testing during development sent packets with RealTerm (see the [tooling note](../README.md#development-and-test-tooling)). Driving a tool by hand is not a reproducible test, so it does not by itself change any status below and no packet contents are published here.
+Manual command testing during development sent packets with RealTerm over the controller's serial/UART link (see the [tooling note](../README.md#development-and-test-tooling)). That link is a separate interface from the TCP path, and no test row below covers it. Driving a tool by hand is not a reproducible test, so it does not by itself change any status below and no packet contents are published here.
 
 | Area | Suggested test | What to check | Status |
 | --- | --- | --- | --- |

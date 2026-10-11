@@ -21,11 +21,14 @@ flowchart TD
 
 [Editable Mermaid source](../diagrams/system-architecture.mmd) · [Conceptual firmware flow](../diagrams/firmware-flow.mmd)
 
+The diagram focuses on the network path. A serial/UART link was also used to send command packets during development; it is described at a high level under [hardware](hardware.md) and [networking](networking.md).
+
 ## Responsibility boundaries
 
 | Boundary | Design consideration |
 | --- | --- |
 | Wired interface → request handling | SPI connects the ESP32 and W5500; TCP supplies a transport, not a trusted command. |
+| Serial link → request handling | The UART/serial path also carried command packets during development; its framing and exposure outside development are not documented here. |
 | Request handling → state | Validate structure and supported operations before updating state; see [networking](networking.md). |
 | State → persistence | Persist only settings intended to survive a restart; treat temporary display state separately. |
 | State → display | Coordinate readers and writers so rendering observes consistent state; a per-line update must not disturb the other lines. See [concurrency](concurrency.md). |
