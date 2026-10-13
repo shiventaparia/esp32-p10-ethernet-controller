@@ -1,11 +1,14 @@
-%% Conceptual firmware flow only; actual boot sequence and implementation need owner confirmation.
+%% Portfolio evidence only: conceptual firmware flow; not an exact trace of the delivered implementation.
+%% The root src/main.cpp is the only firmware source and is redacted/non-buildable; the independent host example is the runnable code sample.
 flowchart TD
     A[Power On] --> B[Initialize Controller]
     B --> C[Load Supported Settings]
     C --> D[Initialize Ethernet and Display]
     D --> E[Start RTOS Tasks]
     E --> F[Network Task Receives Request]
+    E -. development path .-> U[UART Command Input]
+    U -.-> G[Validate and Interpret Command]
     F --> G[Validate and Interpret Command]
-    G --> H[Update Shared Display State]
+    G --> H[Update One Display Line or Supported State]
     H --> I[Display Task Renders State]
     I --> J[Display Refresh Continues]

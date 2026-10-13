@@ -1,37 +1,86 @@
-# Supplied media and release boundary
+# Project media and publication permission
 
-The supplied media consists of photos and video clips documenting a display and controller test setup. It visibly contains the P10 display/test arrangement and branding.
+The media documents the P10 display and controller setup, permitted branding, and
+the custom controller PCB used with the attached W5500 hardware. I took the
+project photos and recorded the videos, including those in the linked archive.
+The project owner gave permission to include the media in
+this portfolio release.
 
-> **Release status:** the project owner confirmed on 2026-10-11 that this media may be published. Media added later requires a fresh review before publication.
+> **Release status:** the project owner gave permission to include the
+> demonstration media. Inclusion permission is not a substitute for redaction:
+> laptop screens, written network settings, and source-code views still require
+> a privacy review. No permission date is inferred from recording filenames.
 
-The [system overview image](system-overview.png) is the visual-overview reference used by the main README. The editable [conceptual architecture diagram](../diagrams/system-architecture.mmd) remains a text-based illustration for documentation purposes.
+The local inventory includes the visual overview and display photos captured by
+me. Full videos and additional hardware evidence are hosted in the Google Drive
+archive below. Captions remain high level and do not identify deployment details,
+network identifiers, credentials, or production implementation. The selected
+local still images can be viewed without accessing the external archive.
 
-## Local media inventory
+The [system overview image](system-overview.png) is the visual-overview
+reference used by the main README. The editable [conceptual architecture
+diagram](../diagrams/system-architecture.mmd) remains a text-based illustration
+for documentation purposes.
 
-All items below are repository-local files; no external media hosting is required.
-
-### Visual overview
+## Visual overview
 
 ![Conceptual system overview](system-overview.png)
 
-### Photos
+| File | Purpose |
+| --- | --- |
+| [system-overview.png](system-overview.png) | High-level system visual used by the main README; not a wiring plan or source trace. |
 
-![Display showing test content](display-live-test.jpg)
+## Photos captured by me
 
-![P10 display test board](display-test-panel.jpg)
+| File | Caption |
+| --- | --- |
+| [display-live-test.jpg](display-live-test.jpg) | Display showing test content. |
+| [display-test-panel.jpg](display-test-panel.jpg) | P10 display test board. The board had some non-working pixels during testing. |
+| [p10-display-line-control.png](p10-display-line-control.png) | P10 display with changing text and independently populated lines. |
+| [p10-display-font-style-variation.jpg](p10-display-font-style-variation.jpg) | P10 display showing font and style variation across lines. |
 
-### Silent video clips
+These still images document captured test-display states associated with
+changing or scrolling text, font/style variation, and line-by-line independent
+control. They do not establish timing, complete pixel health, network behavior,
+or production behavior. The non-working pixels on the P10 test board are a
+hardware caveat when interpreting any visible defect.
 
-GitHub's Markdown sanitizer strips inline `<video>` elements, so these clips are linked rather than embedded; each link opens in GitHub's built-in player.
+The custom controller PCB visible in the footage I recorded is included as
+hardware-integration evidence: it shows the test hardware used with the W5500
+Ethernet controller. It is not a schematic, manufacturing release, or electrical
+qualification record.
 
-| File | Length | Size | Notes |
-| --- | --- | --- | --- |
-| [display-demo-1.mp4](display-demo-1.mp4) | 76 s | ~14 MB | H.264, 848×478, no audio track |
-| [display-demo-2.mp4](display-demo-2.mp4) | 125 s | ~17 MB | H.264, 478×850, no audio track |
-| [display-demo-3.mp4](display-demo-3.mp4) | 6 s | ~1 MB | H.264, 848×478, no audio track |
+## Full hardware evidence archive
 
-The video stream was copied out of the supplied recordings without re-encoding; only the audio track was removed so the clips remain silent, and the MP4 was written with `faststart` so playback can begin before the whole file is downloaded. No upscaling, cropping, or frame edits were applied.
+[Additional photos and videos — Google Drive evidence archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing)
 
-## Review checklist for any future media
+The project owner gave permission to share this folder for the release. Keep
+source-code views, credentials, addresses, operational
+endpoints, and other restricted content out of the shared folder. The local MP4s
+and video-derived previews were removed from this repository; the local still
+images remain the directly inspectable subset.
 
-Review each photo and video for visible addresses, MACs, serial numbers, customer/company names or branding beyond what is approved, credentials, proprietary UI/data, and other identifying details. Do not reuse company-site images or internal screenshots without approval. Keep descriptions high level and do not infer implementation details from the footage.
+## Command and display evidence
+
+The Google Drive archive contains the broader command-validation and hardware
+evidence. The public repository keeps the command examples and selected display
+states while deployment identifiers, terminal settings, and proprietary captures
+remain withheld.
+
+## Drive-archive privacy review
+
+The Drive archive may contain laptop views of source code, network/tooling
+screens, or written notes. Keep sensitive regions out of the public folder and
+retain only release-permitted files. The repository-local videos and derived
+previews were removed; the Drive folder contains the additional evidence archive.
+
+## Review checklist for future media
+
+Review each photo and video for visible addresses, MACs, serial numbers,
+customer/company names or branding beyond what is permitted, credentials,
+proprietary UI/data, and other identifying details. Do not reuse company-site
+images or internal screenshots without approval. Keep descriptions high level
+and do not infer implementation details from the footage. The repository's media
+and diagrams are portfolio evidence, while production network/OTA implementation,
+sensitive deployment values, binaries, generated build output, and local-path IDE
+files remain omitted from the public release.

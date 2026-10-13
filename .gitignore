@@ -9,11 +9,9 @@ dist/
 *.o
 *.a
 
-# Production project files are outside this documentation-only showcase
-platformio.ini
-src/
-include/
-lib/
+# The approved root PlatformIO support files and redacted entry point are tracked.
+# Keep generated output, local IDE state, and workspace files ignored.
+*.code-workspace
 
 # IDE and local files
 .vscode/

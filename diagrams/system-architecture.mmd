@@ -1,10 +1,13 @@
-%% Conceptual system architecture only; not exact wiring, topology, or production source-code trace.
+%% Portfolio evidence only: conceptual architecture, not exact wiring, topology, or a production source-code trace.
+%% The root src/main.cpp is the only firmware source and is redacted/non-buildable; production network/OTA implementation and sensitive deployment values are omitted.
 flowchart TD
     Client[LAN Client] --> TCP[TCP Server]
+    Serial[Serial / UART<br/>(development path)] -. command packets .-> JSON[Command / JSON Processing]
     TCP --> JSON[Command / JSON Processing]
     JSON --> State[Display and Configuration State]
     State --> Render[Display Rendering]
-    Render --> P10[P10 LED Matrix]
+    Render --> Lines[Four independently controlled display lines]
+    Lines --> P10[P10 LED Matrix]
     State <--> NVS[Preferences / NVS]
     W5500[W5500 Ethernet] <--> TCP
     RTOS[FreeRTOS Tasks and Synchronization] -. coordinates .-> TCP

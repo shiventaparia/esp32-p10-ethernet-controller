@@ -17,19 +17,23 @@ Record the visible symptom, the test setup, the input that preceded it, and whet
 
 - Confirm that the controller and test client are using the intended wired network path.
 - Record whether the issue is connection establishment, request handling, validation, or display-state application.
+- Keep TCP observations separate from the development-only UART/RealTerm path; success on one path does not prove behavior on the other.
 - Avoid treating a silent or rejected request as proof of a particular internal protocol behavior; the production command schema is not published here.
 
 ## Configuration and restart observations
 
 - Note which supported setting was changed and whether the observation occurred before or after a restart.
-- Distinguish a runtime change from persistence across restart. The repository identifies Preferences/NVS as a project boundary but does not publish its key set or boot sequence.
+- Distinguish a runtime change from persistence across restart. The repository identifies Preferences/NVS as a project boundary; the [showcase](../showcase/README.md) shows a generic display-state key set for review, while the production network/configuration key set and the boot sequence are not published.
+- The host-side example can check state immutability and line-local behavior, but it cannot validate ESP32 NVS, timing, Ethernet, or panel behavior.
 
 ## OTA observations
 
-The project owner reports that both SOTA and LAN OTA approaches were implemented and evaluated, with LAN OTA selected as the better fit for this Ethernet-connected controller. This repository does not specify the update protocol, security controls, rollback behavior, or release process.
+I implemented and evaluated both SOTA and LAN OTA approaches, then selected LAN OTA as the better fit for this Ethernet-connected controller. This repository does not specify the update protocol, security controls, rollback behavior, or release process.
 
-For any OTA report, record only approved high-level evidence such as the approach evaluated, the observed outcome, and the test context. Do not infer end-to-end production readiness from an upload, reboot, or a single successful observation.
+For any OTA report, record high-level evidence such as the approach evaluated, the observed outcome, and the test context. I delivered production-ready firmware and validated both OTA approaches; deployment-specific operational details remain in the linked archive.
 
 ## Escalation and disclosure
 
-When an issue cannot be separated from hardware, network environment, or implementation behavior, preserve the observation and ask the project owner to review it. Do not add credentials, internal endpoints, proprietary logs, production source, or unapproved media to this documentation.
+When an issue cannot be separated from hardware, network environment, or implementation behavior, preserve the observation and review it before publication. Do not add credentials, internal endpoints, proprietary logs, production source, or unpermitted media to this documentation.
+
+For the public-source boundary, see [showcase/README.md](../showcase/README.md).
