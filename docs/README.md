@@ -40,9 +40,9 @@ outside the explicitly permitted root support set:
 | Item | Rule and reason |
 | --- | --- |
 | Production `src/`, except the reviewed redacted `src/main.cpp` | Exclude all production implementation files. The root source path contains only the redacted entry point; do not add other production source. |
-| `.vscode/` and `*.code-workspace` | Exclude all editor state. The reviewed files include generated configuration and absolute local paths to the source checkout, build output, and toolchain. They are not needed to explain the project. |
+| `.vscode/` and other `*.code-workspace` files | Exclude editor state and workspace files that contain local paths. The explicitly permitted `src/P10 display.code-workspace` is a minimal relative-path workspace file copied from the original project and contains no absolute local paths. |
 | `.pio/` | Exclude the entire generated PlatformIO tree, including dependency locks, object/dependency files, binaries, ELF files, maps, and build metadata. These artifacts are not source and can disclose implementation or environment details. |
-| `build/`, `dist/`, firmware images, and compiler outputs | Exclude generated deliverables such as `*.bin`, `*.elf`, `*.hex`, `*.map`, `*.o`, and `*.a`. The portfolio does not distribute runnable firmware or generated build output. |
+| `build/`, `dist/`, firmware images, and compiler outputs | Exclude generated deliverables such as `*.elf`, `*.hex`, `*.map`, `*.o`, and `*.a`. The explicitly documented `ota/esp32-p10-ethernet-controller-ota-validation.bin` is the one permitted OTA validation artifact; all other firmware images and generated build output remain excluded. |
 | Other source files under `src/`, `include/`, `lib/`, or `test/` | Exclude all files beyond the permitted root entry point and placeholder READMEs. Do not add libraries, headers, tests, or production implementation. |
 | credentials, logs, local settings, and internal identifiers | Exclude secrets and operational details, including network identifiers, endpoints, packet captures, serial settings, and unpermitted screenshots or media. |
 
@@ -64,7 +64,8 @@ The reviewed source entry point is `src/main.cpp`, with documentation under
 The original PlatformIO project folder remains outside this repository. The
 portfolio contains a reviewed subset, not a production checkout: the root
 `src/main.cpp` is the only firmware source and is redacted/non-buildable;
-`.pio`, binaries, generated build output, and local-path IDE files are excluded.
+`.pio`, binaries other than the documented OTA validation artifact, generated build
+output, and local-path IDE files are excluded.
 The host-side example remains independent and runnable, while media and Mermaid
 diagrams are portfolio evidence only. Production network/OTA implementation and
 sensitive deployment values remain omitted.

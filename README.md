@@ -14,7 +14,7 @@ A documentation-first engineering case study of an ESP32-based P10 LED matrix co
 | Custom controller PCB with W5500 Ethernet hardware | [Drive evidence archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing) | Hardware photos I took and videos I recorded showing the custom test PCB and attached W5500 hardware | Detailed schematic, electrical review, signal-integrity analysis, and manufacturing records remain private |
 | Co-developed and co-debugged embedded system | [Contribution statement](#personal-contributions-and-ownership), [`src/main.cpp`](src/main.cpp), architecture docs, and project history | My account of direct team-based firmware implementation and debugging, with adapted source patterns and engineering context | Complete production implementation, client identity, deployment, and proprietary protocol remain withheld |
 | My implementation decision: LAN OTA over SOTA | [`docs/ota-design.md`](docs/ota-design.md), [`docs/design-decisions.md`](docs/design-decisions.md) | I evaluated both OTA approaches and made the decision to select LAN OTA for the W5500-connected controller | Security controls, rollback design, and deployment-specific operations remain withheld |
-| OTA validation firmware | [Validation account](#delivery-and-production-status), [Drive evidence archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing) | My use of the production firmware binary to test both SOTA and LAN OTA, with related hardware evidence | The binary is not committed to GitHub because generated firmware artifacts can expose recoverable implementation |
+| OTA validation firmware | [`ota/esp32-p10-ethernet-controller-ota-validation.bin`](ota/esp32-p10-ethernet-controller-ota-validation.bin), [Drive evidence archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing) | The production firmware binary I used to test both SOTA and LAN OTA, with related hardware evidence | This is a validation artifact, not the complete production source or firmware checkout |
 | Permission to publish | [Project background](#project-background), [Media publication permission](media/README.md) | The project owner gave permission to publish the permitted project material | Publication permission does not attribute my photos, videos, implementation work, or OTA decision to the owner |
 
 I took the project photos, recorded the videos, and made the LAN OTA implementation
@@ -187,9 +187,11 @@ the permitted support files, documentation, selected redacted source, and eviden
 links rather than the complete production checkout.
 
 I used the production firmware binary to validate both SOTA and LAN OTA workflows.
-It is intentionally not committed to GitHub because generated firmware
-artifacts can expose recoverable implementation. Supporting hardware and OTA
-evidence is available in the [Google Drive archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing).
+The validation copy is included at
+[`ota/esp32-p10-ethernet-controller-ota-validation.bin`](ota/esp32-p10-ethernet-controller-ota-validation.bin).
+It is a generated validation artifact, not the complete production source or
+firmware checkout. Supporting hardware and OTA evidence is available in the
+[Google Drive archive](https://drive.google.com/drive/folders/1Rl7MxlMSVG_yuMZJBnGRHxVEYuInktFD?usp=sharing).
 
 ## Personal contributions and ownership
 
@@ -226,6 +228,33 @@ The P10 display board used for testing had some non-working pixels. Consequently
 
 ## Repository guide
 
+## Repository structure
+
+This repository is organized so a reviewer can understand the project without
+mistaking the portfolio files for the complete production checkout:
+
+| Folder/file | What it contains | Why it is included |
+| --- | --- | --- |
+| `README.md` | Project overview, evidence matrix, contribution statement, display capabilities, JSON examples, OTA decision, and release boundaries | Provides the main project narrative and explains what is public versus withheld |
+| `src/` | `src/main.cpp`, a redacted, intentionally non-buildable firmware showcase | Shows selected embedded patterns without publishing the complete production firmware |
+| `examples/` | An independently written host-side C++17 four-line display/state example and its local test | Gives reviewers runnable state-management logic without requiring ESP32 hardware |
+| `docs/` | Architecture, hardware, networking, concurrency, OTA, testing, troubleshooting, and publication-boundary documentation | Explains the engineering decisions and integration boundaries in a portable format |
+| `tests/` | The hardware and production validation matrix | Records the areas tested or evaluated and the deployment details that remain private |
+| `showcase/` | A focused explanation of the redacted source and intentionally omitted production sections | Helps reviewers understand why the public firmware file is not a complete build |
+| `media/` | Local still images that I captured, plus the media release notes and Google Drive evidence link | Shows the display, custom PCB, and W5500 hardware while keeping the full video archive external |
+| `diagrams/` | Editable Mermaid system-architecture and firmware-flow diagrams | Gives a high-level view of data flow and responsibilities; these are conceptual, not wiring plans |
+| `ota/` | `esp32-p10-ethernet-controller-ota-validation.bin`, the firmware binary I used to validate SOTA and LAN OTA | Preserves the exact OTA test artifact used in the project; it is not production source and is not a substitute for the complete firmware checkout |
+| `platformio.ini` | Approved PlatformIO project configuration included with project-owner permission | Provides build/project context for the portfolio release |
+| `default_ota.csv` | OTA partition-layout file included with project-owner permission | Documents the partition context used by the OTA workflow |
+| `include/`, `lib/`, `test/` | PlatformIO placeholder README files | Preserve the approved project layout without publishing additional production headers, libraries, or tests |
+| `src/P10 display.code-workspace` | Minimal workspace file copied from the original project | Preserves the project’s workspace layout; it contains only a relative root-folder reference and no local absolute paths or credentials |
+| `.gitignore` | Rules excluding generated output, secrets, and unapproved artifacts, with one exception for the documented OTA validation binary | Keeps the public repository reproducible and prevents accidental artifact leakage |
+
+The project owner gave permission to publish the permitted material. I took the
+photos and recorded the videos, and I made the LAN OTA selection decision. The
+complete working project remains local and is not represented by this folder
+structure.
+
 | Location | Purpose |
 | --- | --- |
 | [docs/README.md](docs/README.md) | Public repository layout and exact inclusion/exclusion rules |
@@ -252,6 +281,6 @@ Ethernet/TCP, TTL/UART development communication, and SOTA/LAN OTA
 implementation/evaluation. The production-ready firmware was delivered to a
 client project; client identity and sensitive deployment details are withheld.
 
-The complete production source, production network/OTA implementation, sensitive deployment values, `.pio/`, firmware binaries, generated build output, local-path IDE files (`.vscode/` and `*.code-workspace`), internal network identifiers and endpoints, credentials, logs, and unapproved media are excluded. The redacted `src/main.cpp` is the only firmware source in the repository and is intentionally non-buildable. The original project support files — `platformio.ini`, `default_ota.csv`, `include/README`, `lib/README`, and `test/README` — are included with permission from the project owner; they are context files, not a production build. See the [public repository layout and release boundary](docs/README.md) and [showcase README](showcase/README.md) for exact inclusion and omission rules. Any future public detail or attribution requires permission review. Licensing remains unspecified pending authorization.
+The complete production source, production network/OTA implementation, sensitive deployment values, `.pio/`, firmware binaries other than the explicitly documented OTA validation artifact, generated build output, local-path IDE files (`.vscode/` and other workspace files), internal network identifiers and endpoints, credentials, logs, and unapproved media are excluded. The minimal `src/P10 display.code-workspace` is the sole workspace-file exception; it contains only a relative root-folder reference. The redacted `src/main.cpp` is the only firmware source in the repository and is intentionally non-buildable. The original project support files — `platformio.ini`, `default_ota.csv`, `include/README`, `lib/README`, and `test/README` — are included with permission from the project owner; they are context files, not a production build. See the [public repository layout and release boundary](docs/README.md) and [showcase README](showcase/README.md) for exact inclusion and omission rules. Any future public detail or attribution requires permission review. Licensing remains unspecified pending authorization.
 
 For questions about this overview, contact me through my GITHUB.

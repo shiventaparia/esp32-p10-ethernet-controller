@@ -9,9 +9,13 @@ dist/
 *.o
 *.a
 
+# Deliberately published OTA validation artifact
+!ota/esp32-p10-ethernet-controller-ota-validation.bin
+
 # The approved root PlatformIO support files and redacted entry point are tracked.
 # Keep generated output, local IDE state, and workspace files ignored.
 *.code-workspace
+!src/P10 display.code-workspace
 
 # IDE and local files
 .vscode/
